@@ -95,3 +95,16 @@ header h1 {
   font-size: 0.9rem;
   color: var(--accent);
 }
+
+#v0 {
+  position: fixed; /* Pins it to the screen */
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;
+  z-index: -100; /* Puts it behind everything else */
+  background-size: cover;
+  display: block;
+}

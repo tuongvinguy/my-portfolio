@@ -1,19 +1,4 @@
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
-  });
-});
-
-const hiddenElements = document.querySelectorAll('.project-card');
-hiddenElements.forEach((el) => observer.observe(el));
-
-const observerOptions = {
-  threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, index) => {
     if (entry.isIntersecting) {
       // Add a small delay based on the index for a "staggered" look

@@ -1,37 +1,23 @@
-const video = document.getElementById('v0');
-const smoothness = 0.25; // Snappier response for 600vh
-let targetTime = 0;
-let currentTime = 0;
+const starLayer = document.getElementById('stars');
 
-const scrollVideo = () => {
-  const scrollPos = window.scrollY;
-  const totalScroll = document.body.offsetHeight - window.innerHeight;
-  const scrollFraction = scrollPos / totalScroll;
+const handleScroll = () => {
+  const scrolled = window.pageYOffset;
 
-  if (video.duration) {
-    targetTime = video.duration * scrollFraction;
-  }
-};
+  // Parallax for Background Stars
+  // Moves slightly slower than scroll to create depth
+  starLayer.style.transform = `translateY(${scrolled * 0.3}px)`;
 
-const updateVideo = () => {
-  currentTime += (targetTime - currentTime) * smoothness;
-  video.currentTime = currentTime;
-  requestAnimationFrame(updateVideo);
-};
-
-video.addEventListener('loadedmetadata', () => {
-  video.pause();
-  scrollVideo();
-});
-
-updateVideo();
-window.addEventListener('scroll', scrollVideo);
-
-// Intersection Observer for cards
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('reveal');
+  // Reveal cards when they enter view
+  const cards = document.querySelectorAll('.glass-card, .project-card');
+  cards.forEach(card => {
+    const cardTop = card.getBoundingClientRect().top;
+    if (cardTop < window.innerHeight * 0.8) {
+      card.classList.add('reveal');
+    }
   });
-}, { threshold: 0.15 });
+};
 
-document.querySelectorAll('.glass-card, .project-card').forEach(card => observer.observe(card));
+window.addEventListener('scroll', handleScroll);
+
+// Initialize positions
+handleScroll();

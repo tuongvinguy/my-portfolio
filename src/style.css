@@ -1,43 +1,34 @@
 :root {
-  --sand: #fdfaf1;
-  --ink: #1e293b;
-  --gold: #f59e0b;
-  --rose: #e11d48;
+  --paper: #fdfaf1; /* Soft cream paper */
+  --ink: #334155;   /* Sketch pen blue/black */
+  --star-gold: #fde047;
+  --rose: #f43f5e;
+  --sky-top: #e0f2fe; /* Very light watercolor blue */
 }
 
 body {
   margin: 0;
-  background-color: var(--sand);
+  /* Watercolor gradient background */
+  background: linear-gradient(to bottom, var(--sky-top) 0%, var(--paper) 100%);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: 'Plus Jakarta Sans', sans-serif;
   overflow-x: hidden;
-  min-height: 600vh; /* Keeps the speed you liked */
+  min-height: 600vh;
 }
 
-/* 3D Parallax Containers */
-.parallax-bg {
+/* Texture overlay to make it look like a physical book page */
+body::before {
+  content: "";
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100vh;
-  z-index: -1;
-  background: radial-gradient(circle at top, #2d3436 0%, #000 100%);
-}
-
-.layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-/* The Star Layer */
-.stars {
-  background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-  opacity: 0.5;
-}
-
-/* The Paper Texture Overlay */
-.texture {
+  top: 0; left: 0; width: 100%; height: 100%;
   background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-  opacity: 0.3;
-  mix-blend-mode: multiply;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 5;
 }
 
-#app { max-width: 800px; margin: 0 auto; position: relative; }
+#app { max-width: 800px; margin: 0 auto; position: relative; z-index: 10; }
 
 .v-section {
   height: 100vh;
@@ -47,59 +38,49 @@ body {
   perspective: 1000px;
 }
 
-/* Hand-Drawn Style Cards */
+/* Hand-drawn "Scrappy" Cards */
 .glass-card, .project-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
   padding: 40px;
-  /* Whimsical uneven border */
-  border-radius: 20px 100px 15px 80px / 15px 20px 100px 20px;
-  border: 1.5px solid var(--ink);
-  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.05);
+  /* This creates a "wobbly" hand-drawn border */
+  border: 2px solid var(--ink);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  box-shadow: 8px 8px 0px rgba(51, 65, 85, 0.1);
   opacity: 0;
-  transform: translateZ(-100px) rotateX(10deg);
-  transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
 }
 
 .reveal {
   opacity: 1;
-  transform: translateZ(0) rotateX(0deg);
+  transform: translateY(0);
 }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 4rem;
-  margin: 0;
+/* Sketchy Star Styles */
+.doodle-star {
+  position: fixed;
+  color: var(--star-gold);
+  font-size: 1.5rem;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.1));
 }
-
-.subtitle {
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 0.8rem;
-  color: var(--gold);
-}
-
-/* Glowing Buttons */
-.social-links { display: flex; gap: 20px; margin-top: 30px; }
 
 .btn {
   text-decoration: none;
   padding: 12px 30px;
-  border-radius: 40px;
-  font-weight: 600;
+  border-radius: 50% 20% 50% 20%; /* Whimsical shape */
+  font-weight: 700;
   border: 2px solid var(--ink);
-  transition: all 0.3s ease;
   color: var(--ink);
+  background: transparent;
+  transition: 0.3s;
 }
 
-.github-btn:hover {
-  background: var(--gold);
-  transform: scale(1.1) rotate(-3deg);
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+.btn:hover {
+  background: var(--star-gold);
+  transform: rotate(-3deg) scale(1.1);
 }
 
-.email-btn { background: var(--rose); color: white; border-color: var(--rose); }
-.email-btn:hover {
-  transform: scale(1.1) rotate(3deg);
-  box-shadow: 0 0 20px rgba(225, 29, 72, 0.5);
-}
+.email-btn { background: #fff1f2; border-color: var(--rose); color: var(--rose); }

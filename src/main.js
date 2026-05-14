@@ -1,32 +1,31 @@
 const video = document.getElementById('v0');
 
-// 1. Scrubbing Logic
+// 1. The Scroll Logic
 const scrollVideo = () => {
   const scrollPos = window.scrollY;
   const totalScroll = document.body.offsetHeight - window.innerHeight;
   const scrollFraction = scrollPos / totalScroll;
 
   if (video.duration) {
+    // This manually set the frame based on your scroll position
     video.currentTime = video.duration * scrollFraction;
   }
 };
 
-// 2. Initialize Video immediately
-video.onloadeddata = () => {
-  video.currentTime = 0;
-  scrollVideo();
-};
+// 2. The "Freeze" Logic
+video.addEventListener('loadedmetadata', () => {
+  video.pause(); // Ensure it doesn't play on its own
+  scrollVideo(); // Set it to the very first frame
+});
 
-// Fallback in case it loads too fast
-if (video.readyState >= 2) {
-  scrollVideo();
-}
+// Run this in case the video was already cached/loaded
+video.pause();
 
 window.addEventListener('scroll', () => {
   requestAnimationFrame(scrollVideo);
 });
 
-// 3. Reveal Cards Logic
+// 3. Reveal Cards Logic (Your existing fade-in effect)
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {

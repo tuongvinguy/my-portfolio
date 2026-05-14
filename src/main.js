@@ -1,7 +1,7 @@
 const video = document.getElementById('v0');
 
 // Settings for smoothness
-const smoothness = 0.1; // Lower = smoother/slower, Higher = snappier
+const smoothness = 0.15; // Lower = smoother/slower, Higher = snappier
 let targetTime = 0;
 let currentTime = 0;
 

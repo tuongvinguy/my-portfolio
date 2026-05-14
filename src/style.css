@@ -25,8 +25,8 @@ body {
   height: 100vh;
   object-fit: cover;
   z-index: -1;
-  /* Optional: Softens the video so text pops more */
-  filter: brightness(0.95) saturate(1.1);
+  /* Removed the blur, kept a slight darkness so white text is readable */
+  filter: brightness(0.85); 
 }
 
 #app {

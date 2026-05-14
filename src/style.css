@@ -1,8 +1,8 @@
 :root {
-  --bg: #fff5f8; /* Soft pink-white background */
-  --card-bg: rgba(255, 255, 255, 0.85); /* Brighter glass for HK theme */
+  --bg: #fff5f8;
+  --card-bg: rgba(255, 255, 255, 0.85);
   --accent: #ff69b4; /* Hello Kitty Pink */
-  --text-main: #2d3436; /* Darker text for readability on light glass */
+  --text-main: #2d3436;
   --text-dim: #636e72;
 }
 
@@ -11,12 +11,10 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: var(--bg);
   color: var(--text-main);
-  line-height: 1.6;
-  /* Adjust this number to control scroll speed (1000vh = very slow) */
-  min-height: 1000vh; 
+  /* NEW SPEED: 600vh */
+  min-height: 600vh; 
 }
 
-/* Background Video Setup */
 #v0 {
   position: fixed;
   top: 0;
@@ -25,8 +23,7 @@ body {
   height: 100vh;
   object-fit: cover;
   z-index: -1;
-  /* Removed the blur, kept a slight darkness so white text is readable */
-  filter: brightness(0.85); 
+  filter: brightness(0.85); /* Keeps video crisp but text readable */
 }
 
 #app {
@@ -36,19 +33,17 @@ body {
   z-index: 10;
 }
 
-/* Full-height sections for scrollytelling */
 .v-section {
-  height: 100vh;
+  height: 120vh; /* Slightly taller sections to match 600vh total height */
   display: flex;
   align-items: center;
   padding: 0 20px;
 }
 
-/* Hello Kitty Style Glass Cards */
 .glass-card, .project-card {
   background: var(--card-bg);
-  backdrop-filter: blur(20px); /* Heavy blur for the cute frosted look */
-  border: 2px solid rgba(255, 105, 180, 0.2); /* Soft pink border */
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 105, 180, 0.2);
   border-radius: 30px;
   padding: 40px;
   max-width: 600px;
@@ -58,7 +53,6 @@ body {
   box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);
 }
 
-/* This is triggered by your main.js scroll listener */
 .reveal {
   opacity: 1;
   transform: translateY(0);
@@ -66,49 +60,52 @@ body {
 
 header h1 {
   font-size: clamp(3rem, 10vw, 5rem);
-  font-weight: 800;
   margin: 0;
-  /* Pink to White Gradient */
   background: linear-gradient(to right, #ff69b4, #ff1493);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.bio {
-  font-size: 1.2rem;
-  color: var(--text-dim);
-  margin-top: 10px;
+/* --- Social Buttons --- */
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
 }
 
-.tags { 
-  display: flex; 
-  gap: 10px; 
-  margin-top: 15px; 
+.btn {
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 14px;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-block;
+  border: 2px solid var(--accent);
+}
+
+.github-btn {
+  background: var(--accent);
+  color: white;
+}
+
+.email-btn {
+  background: transparent;
+  color: var(--accent);
+}
+
+/* Glow & Expand Hover Effect */
+.btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
+  cursor: pointer;
 }
 
 .tags span {
   font-size: 0.8rem;
-  background: rgba(255, 105, 180, 0.15); /* Light pink tags */
+  background: rgba(255, 105, 180, 0.15);
   color: #d02e77;
   padding: 6px 14px;
   border-radius: 100px;
+  margin-right: 8px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.skills-container { 
-  display: flex; 
-  flex-wrap: wrap; 
-  gap: 10px; 
-  margin-top: 20px; 
-}
-
-.skill-tag {
-  background: white;
-  border: 1px solid rgba(255, 105, 180, 0.2);
-  padding: 8px 16px;
-  border-radius: 12px;
-  color: var(--text-main);
-  font-weight: 500;
 }

@@ -1,39 +1,55 @@
 const video = document.getElementById('v0');
 
-// 1. The Scroll Logic
+// Settings for smoothness
+const smoothness = 0.1; // Lower = smoother/slower, Higher = snappier
+let targetTime = 0;
+let currentTime = 0;
+
+// 1. Calculate where the video SHOULD be based on scroll
 const scrollVideo = () => {
   const scrollPos = window.scrollY;
   const totalScroll = document.body.offsetHeight - window.innerHeight;
   const scrollFraction = scrollPos / totalScroll;
 
   if (video.duration) {
-    // This manually set the frame based on your scroll position
-    video.currentTime = video.duration * scrollFraction;
+    targetTime = video.duration * scrollFraction;
   }
 };
 
-// 2. The "Freeze" Logic
+// 2. The Animation Loop (The "Lerp" Magic)
+const updateVideo = () => {
+  // This math calculates the distance between current and target time
+  // and moves a small percentage (0.1) of the way there every frame.
+  currentTime += (targetTime - currentTime) * smoothness;
+  
+  // Apply the time to the video
+  video.currentTime = currentTime;
+
+  // Keep the loop running at 60fps
+  requestAnimationFrame(updateVideo);
+};
+
+// 3. Initialize
 video.addEventListener('loadedmetadata', () => {
-  video.pause(); // Ensure it doesn't play on its own
-  scrollVideo(); // Set it to the very first frame
+  video.pause();
+  scrollVideo();
 });
 
-// Run this in case the video was already cached/loaded
-video.pause();
+// Start the smooth animation loop immediately
+updateVideo();
 
-window.addEventListener('scroll', () => {
-  requestAnimationFrame(scrollVideo);
-});
+window.addEventListener('scroll', scrollVideo);
 
-// 3. Reveal Cards Logic (Your existing fade-in effect)
+// 4. Reveal Logic for your Project Cards
+const observerOptions = { threshold: 0.15 };
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('reveal');
     }
   });
-}, { threshold: 0.15 });
+}, observerOptions);
 
-document.querySelectorAll('.glass-card, .project-card').forEach(card => {
+document.querySelectorAll('.glass-card, .project-card').forEach((card) => {
   observer.observe(card);
 });

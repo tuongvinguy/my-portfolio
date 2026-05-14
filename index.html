@@ -3,107 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-portfolio</title>
+    <title>Leina Nguyen | Portfolio</title>
     <link rel="stylesheet" href="/src/style.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    <source type="video/mp4" src="/intro.mp4">
   </head>
   <body>
-  <div id="app">
-  <header>
-    <h1>Hey, I'm Leina</h1>
-    <p class="bio">Student Developer & Maker. I build things for the web and beyond.</p>
-    <div class="social-links">
-      <a href="https://github.com/tuongvinguy">GitHub</a>
-      <a href="leinanguyen113@gmail.com">Email</a>
-    </div>
-  </header>
+    <video id="v0" tabindex="0" autobuffer="autobuffer" preload="preload" muted playsinline>
+      <source type="video/mp4" src="/intro.mp4">
+    </video>
 
-  <section class="projects">
-    <h2>Selected Projects</h2>
-    <div class="grid">
-      
-      <div class="project-card">
-  <img src="https://via.placeholder.com/600x300" alt="Project Screenshot" class="project-img">
-  <h3>Project Title</h3>
-  ...
-    </div>
-        <h3>Project Title</h3>
-        <p>A short, punchy description of what you built and why it's cool.</p>
-        <div class="tags">
-          <span>Python</span>
-          <span>AI</span>
+    <div id="app">
+      <header class="v-section">
+        <div class="glass-card">
+          <h1>Hey, I'm Leina</h1>
+          <p class="bio">SMASH Berkeley Scholar & Student Developer. I build things for the web and beyond.</p>
+          <div class="social-links">
+            <a href="https://github.com/tuongvinguy">GitHub</a>
+            <a href="mailto:leinanguyen113@gmail.com">Email</a>
+          </div>
         </div>
-      </div>
+      </header>
 
-      </div>
-  </section>
-</div>
-  <script type="module" src="/src/main.js"></script>
-</body>
+      <section class="v-section">
+        <div class="project-card">
+          <span class="date">07/25 - Present</span>
+          <h3>SMASH Berkeley Scholar</h3>
+          <p>Intensive technical tracks in Back-End Development, Data Science, and AI/ML.</p>
+          <div class="tags">
+            <span>Python</span>
+            <span>AI/ML</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="v-section">
+        <div class="project-card">
+          <h3>Healthcare Symptom Matcher</h3>
+          <p>Streamlit web app helping underserved communities find medications and understand side effects.</p>
+          <div class="tags">
+            <span>Streamlit</span>
+            <span>Social Impact</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="v-section">
+        <div class="project-card">
+          <h3>Shark Tank Winner</h3>
+          <p>1st place in the Chem & BioE Innovation Challenge for an Organ-on-a-Chip proposal.</p>
+          <div class="tags">
+            <span>Innovation</span>
+            <span>BioE</span>
+          </div>
+        </section>
+
+      <section class="v-section">
+        <div class="glass-card">
+          <h2>Technical Toolkit</h2>
+          <div class="skills-container">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">R</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
-
-<section class="experience">
-  <h2>Experience</h2>
-  <div class="grid">
-    <div class="project-card">
-      <span class="date">07/25 - Present</span>
-      <h3>SMASH Berkeley Scholar</h3>
-      <p>Engaging in intensive technical tracks including Back-End Development, Data Science, and AI/ML[cite: 9, 15, 16, 17].</p>
-      <div class="tags">
-        <span>Python</span>
-        <span>AI/ML</span>
-        <span>Data Science</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <span class="date">02/26 - Present</span>
-      <h3>Tutor @ Kumon</h3>
-      <p>Assisting students in developing core academic foundations[cite: 29, 31].</p>
-      <div class="tags">
-        <span>Education</span>
-        <span>Leadership</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="projects">
-  <h2>Selected Work</h2>
-  <div class="grid">
-    <div class="project-card">
-      <span class="date">2025 - 2026</span>
-      <h3>Healthcare Symptom Matcher</h3>
-      <p>Co-developed a Streamlit web app to help underserved communities find prescription and OTC medications while detailing adverse effects[cite: 22, 23, 26].</p>
-      <div class="tags">
-        <span>Python</span>
-        <span>Streamlit</span>
-        <span>Social Impact</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <span class="date">2024 - 2025</span>
-      <h3>Organ-on-a-Chip Proposal</h3>
-      <p>Won 1st place in the Chem & BioE Shark Tank Challenge for a proposal reducing reliance on animal testing[cite: 12, 27, 28].</p>
-      <div class="tags">
-        <span>Innovation</span>
-        <span>BioE</span>
-        <span>1st Place</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="skills">
-  <h2>Technical Toolkit</h2>
-  <div class="skills-container">
-    <span class="skill-tag">Python [cite: 40]</span>
-    <span class="skill-tag">HTML/CSS [cite: 40]</span>
-    <span class="skill-tag">SQL [cite: 40]</span>
-    <span class="skill-tag">R [cite: 40]</span>
-    <span class="skill-tag">Database Management [cite: 40]</span>
-    <span class="skill-tag">Quantitative Analysis [cite: 40]</span>
-  </div>
-</section>

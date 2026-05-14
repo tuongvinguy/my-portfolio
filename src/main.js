@@ -1,20 +1,33 @@
+const video = document.getElementById('v0');
+
+// 1. Video Scrubbing (Scroll sync)
+function scrubVideo() {
+  const scrollPos = window.scrollY;
+  const totalHeight = document.body.scrollHeight - window.innerHeight;
+  const scrollFraction = scrollPos / totalHeight;
+
+  if (video.duration) {
+    video.currentTime = video.duration * scrollFraction;
+  }
+}
+
+// 2. Reveal Sections on Scroll
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, index) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      // Add a small delay based on the index for a "staggered" look
-      setTimeout(() => {
-        entry.target.classList.add('reveal');
-      }, index * 150); 
+      entry.target.classList.add('reveal');
     }
   });
-}, observerOptions);
+}, { threshold: 0.2 });
 
-document.querySelectorAll('.project-card').forEach((card) => {
-  card.style.opacity = "0";
-  card.style.transform = "translateY(30px)";
-  card.style.transition = "all 0.8s ease-out";
-  observer.observe(card);
+// Initialize everything
+window.addEventListener('scroll', () => {
+  requestAnimationFrame(scrubVideo);
 });
 
-// Add this class in your CSS for the JS to trigger
-// .reveal { opacity: 1 !important; transform: translateY(0) !important; }
+document.querySelectorAll('.glass-card, .project-card').forEach((el) => {
+  observer.observe(el);
+});
+
+// Ensure video is ready
+video.addEventListener('loadedmetadata', scrubVideo);

@@ -1,8 +1,9 @@
 :root {
-  --bg: #0b0f1a;
-  --card-bg: rgba(15, 23, 42, 0.85);
-  --accent: #38bdf8;
-  --text-main: #f1f5f9;
+  --bg: #fff5f8; /* Soft pink-white background */
+  --card-bg: rgba(255, 255, 255, 0.85); /* Brighter glass for HK theme */
+  --accent: #ff69b4; /* Hello Kitty Pink */
+  --text-main: #2d3436; /* Darker text for readability on light glass */
+  --text-dim: #636e72;
 }
 
 body {
@@ -10,10 +11,12 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: var(--bg);
   color: var(--text-main);
-  /* INCREASE THIS NUMBER TO MAKE SCROLL SLOWER */
+  line-height: 1.6;
+  /* Adjust this number to control scroll speed (1000vh = very slow) */
   min-height: 1000vh; 
 }
 
+/* Background Video Setup */
 #v0 {
   position: fixed;
   top: 0;
@@ -22,6 +25,8 @@ body {
   height: 100vh;
   object-fit: cover;
   z-index: -1;
+  /* Optional: Softens the video so text pops more */
+  filter: brightness(0.95) saturate(1.1);
 }
 
 #app {
@@ -31,6 +36,7 @@ body {
   z-index: 10;
 }
 
+/* Full-height sections for scrollytelling */
 .v-section {
   height: 100vh;
   display: flex;
@@ -38,18 +44,21 @@ body {
   padding: 0 20px;
 }
 
+/* Hello Kitty Style Glass Cards */
 .glass-card, .project-card {
   background: var(--card-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
+  backdrop-filter: blur(20px); /* Heavy blur for the cute frosted look */
+  border: 2px solid rgba(255, 105, 180, 0.2); /* Soft pink border */
+  border-radius: 30px;
   padding: 40px;
+  max-width: 600px;
   opacity: 0;
   transform: translateY(40px);
   transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);
 }
 
-/* This class is added by JS when scrolling */
+/* This is triggered by your main.js scroll listener */
 .reveal {
   opacity: 1;
   transform: translateY(0);
@@ -59,24 +68,47 @@ header h1 {
   font-size: clamp(3rem, 10vw, 5rem);
   font-weight: 800;
   margin: 0;
-  background: linear-gradient(to right, #38bdf8, #ffffff);
+  /* Pink to White Gradient */
+  background: linear-gradient(to right, #ff69b4, #ff1493);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.tags { display: flex; gap: 10px; margin-top: 15px; }
+.bio {
+  font-size: 1.2rem;
+  color: var(--text-dim);
+  margin-top: 10px;
+}
+
+.tags { 
+  display: flex; 
+  gap: 10px; 
+  margin-top: 15px; 
+}
+
 .tags span {
   font-size: 0.8rem;
-  background: rgba(56, 189, 248, 0.2);
-  color: var(--accent);
+  background: rgba(255, 105, 180, 0.15); /* Light pink tags */
+  color: #d02e77;
   padding: 6px 14px;
   border-radius: 100px;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.skills-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.skills-container { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 10px; 
+  margin-top: 20px; 
+}
+
 .skill-tag {
-  background: rgba(255, 255, 255, 0.1);
+  background: white;
+  border: 1px solid rgba(255, 105, 180, 0.2);
   padding: 8px 16px;
   border-radius: 12px;
+  color: var(--text-main);
+  font-weight: 500;
 }
